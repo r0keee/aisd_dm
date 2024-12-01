@@ -26,9 +26,13 @@ for symbol in input_value:
     left = left + width * symbol_left
     print(f"{symbol} -> {left} {right}")
 
-print(left, right)
+print(f"Итоговые границы {left, right}")
 
 factor = 2**(ceil(-log2(decimal.Decimal(right - left))))
 
-print(decimal.Decimal(factor) * left, decimal.Decimal(factor) * right)
-print(bin(int(decimal.Decimal(factor) * right))[2:])
+print(f"Нормированные границы {decimal.Decimal(factor) * left, decimal.Decimal(factor) * right}")
+temp = bin(int(decimal.Decimal(factor) * right))[2:]
+if len(temp) == (ceil(-log2(decimal.Decimal(right - left)))) - 1:
+    temp = '0' + temp
+
+print(f"Итоговый бинарный код: {temp}")
